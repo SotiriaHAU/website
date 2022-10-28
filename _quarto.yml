@@ -7,8 +7,9 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Data Analysis (RAD-seq) - Ficus
-      - about.qmd
+        text: | Data Analysis (RAD-seq) - *Ficus* |
+      - href: about.qmd
+      text: | <-- comments |
 
 format:
   html:
