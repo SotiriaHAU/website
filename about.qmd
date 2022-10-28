@@ -1,5 +1,5 @@
 ---
-title: "Comments"
+title: "Comments for Pipeline of fig data analysis (RADseq data)"
 ---
 
 # Pipeline of fig data analysis -August 2022

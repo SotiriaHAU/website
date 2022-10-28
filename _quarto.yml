@@ -6,10 +6,10 @@ website:
   title: "fig project"
   navbar:
     left:
-      - href: index.qmd
-        text: | Data Analysis (RAD-seq) - *Ficus* |
-      - href: about.qmd
-      text: | <-- comments |
+      - text: "| Data Analysis (RAD-seq) - *Ficus* |"
+        file: index.qmd
+      - Comments.qmd 
+
 
 format:
   html:
