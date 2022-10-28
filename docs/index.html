@@ -266,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
 <p><code>mv ./raw_data_per_sample/*.sam ./alignment_results</code></p>
 <p><code>for i in ./raw_data_per_sample/*.fastq</code> <code>do</code> <code>echo ${i}</code> <code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_cds_pum -U ${i} -S ${i}_cds.sam</code> <code>done</code></p>
 <p><code>mv ./raw_data_per_sample/*.sam ./alignment_results</code></p>
-<p><strong>! Do NOT delete the slurm-out files from these jobs! Alternatively, save the terminal output: this gives you information on the alignment details. </strong></p>
+<p><strong>! Do NOT delete the slurm-out files from these jobs! Alternatively, save the terminal output: this gives you information on the alignment details.</strong></p>
 <p>We will also need to generate the .bam files and index them.</p>
 </section>
 <section id="install-samtools" class="level3">
