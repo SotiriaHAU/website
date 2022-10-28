@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>website2 - Pipeline of fig data analysis (RADseq data)</title>
+<title>fig project - Pipeline of fig data analysis (RADseq data)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">website2</span>
+    <span class="navbar-title">fig project</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -120,7 +120,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#install-samtools" id="toc-install-samtools" class="nav-link" data-scroll-target="#install-samtools">5.5) Install samtools</a></li>
   <li><a href="#convert-.sam-to-.bam-and-index-.bam-files" id="toc-convert-.sam-to-.bam-and-index-.bam-files" class="nav-link" data-scroll-target="#convert-.sam-to-.bam-and-index-.bam-files">5.6) Convert .sam to .bam and index .bam files</a></li>
   </ul></li>
-  <li><a href="#snp-calling-and-fstatistics" id="toc-snp-calling-and-fstatistics" class="nav-link" data-scroll-target="#snp-calling-and-fstatistics">6) SNP calling and Fstatistics</a></li>
+  <li><a href="#snp-calling-and-fstatistics" id="toc-snp-calling-and-fstatistics" class="nav-link" data-scroll-target="#snp-calling-and-fstatistics">6) SNP calling and Fstatistics</a>
+  <ul class="collapse">
+  <li><a href="#installing-stacks" id="toc-installing-stacks" class="nav-link" data-scroll-target="#installing-stacks">6.1) Installing Stacks</a></li>
+  <li><a href="#preparing-the-environment" id="toc-preparing-the-environment" class="nav-link" data-scroll-target="#preparing-the-environment">6.2) Preparing the environment</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -275,8 +279,25 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="snp-calling-and-fstatistics" class="level2">
 <h2 class="anchored" data-anchor-id="snp-calling-and-fstatistics">6) SNP calling and Fstatistics</h2>
+<p>Once the raw data are mapped onto a reference genome, we can run the stacks pipeline. We are using ref_map.pl since our reads have been aligned based on a reference genome.</p>
+<section id="installing-stacks" class="level3">
+<h3 class="anchored" data-anchor-id="installing-stacks">6.1) Installing Stacks</h3>
+<p>First we need to install stacks (you need to adjust to your directory/system).</p>
+<p><em>This is very tricky to do in a Mac, I haven’t figured out how to install it properly! I did my analysis in the cyverse.</em></p>
+<p>Run:</p>
+<p><code>wget  -P ./software http://creskolab.uoregon.edu/stacks/source/stacks-2.62.tar.gz --no-check-certificate</code> <code>tar -vxf ./software/stacks-2.62.tar.gz</code> <code>mv stacks-2.62 software</code> <code>cd software/stacks-2.62</code> <code>scl enable devtoolset-8 bash</code> <code>./configure --prefix /home/sotiriaboutsi</code> <code>make</code> <code>make install</code> <code>cd ..</code> <code>cd ..</code></p>
+</section>
+<section id="preparing-the-environment" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-the-environment">6.2) Preparing the environment</h3>
+<p>To run the analysis, you need to upload the “population map” .txt files in the <em>fig_analysis</em> directory. These files will match the sample names to their assigned population/species. The number (3 or 4) indicates whether data from <em>F.trichocerasa</em> have been included (useful as an outgroup).</p>
+<p>The files:</p>
+<ol type="i">
+<li><p>whole genome alignments: <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/wg_3_populations.txt&quot;">wg_3_populations.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/wg_4_populations.txt&quot;">wg_4_populations.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/wg_3_species.txt&quot;">wg_3_species.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/wg_4_species.txt&quot;">wg_4_species.txt</a></p></li>
+<li><p>cds alignments: <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/cds_3_populations.txt&quot;">cds_3_populations.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/cds_4_populations.txt&quot;">cds_4_populations.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/cds_3_species.txt&quot;">cds_3_species.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/cds_4_species.txt&quot;">cds_4_species.txt</a></p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

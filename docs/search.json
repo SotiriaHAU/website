@@ -60,7 +60,7 @@
     "href": "index.html#snp-calling-and-fstatistics",
     "title": "Pipeline of fig data analysis (RADseq data)",
     "section": "6) SNP calling and Fstatistics",
-    "text": "6) SNP calling and Fstatistics"
+    "text": "6) SNP calling and Fstatistics\nOnce the raw data are mapped onto a reference genome, we can run the stacks pipeline. We are using ref_map.pl since our reads have been aligned based on a reference genome.\n\n6.1) Installing Stacks\nFirst we need to install stacks (you need to adjust to your directory/system).\nThis is very tricky to do in a Mac, I haven’t figured out how to install it properly! I did my analysis in the cyverse.\nRun:\nwget  -P ./software http://creskolab.uoregon.edu/stacks/source/stacks-2.62.tar.gz --no-check-certificate tar -vxf ./software/stacks-2.62.tar.gz mv stacks-2.62 software cd software/stacks-2.62 scl enable devtoolset-8 bash ./configure --prefix /home/sotiriaboutsi make make install cd .. cd ..\n\n\n6.2) Preparing the environment\nTo run the analysis, you need to upload the “population map” .txt files in the fig_analysis directory. These files will match the sample names to their assigned population/species. The number (3 or 4) indicates whether data from F.trichocerasa have been included (useful as an outgroup).\nThe files:\n\nwhole genome alignments: wg_3_populations.txt wg_4_populations.txt wg_3_species.txt wg_4_species.txt\ncds alignments: cds_3_populations.txt cds_4_populations.txt cds_3_species.txt cds_4_species.txt"
   },
   {
     "objectID": "index.html#mapping-rad-reads-on-the-reference-genome",

@@ -6,6 +6,7 @@ title: "Pipeline of fig data analysis (RADseq data)"
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.*
 
 ## 0) Notes to begin with
+
 -	You might want to edit the installation scripts to fit 
 i) your system (Linux vs Mac) 
 ii) the version of the software (latest for August 2022 documented here). 
@@ -62,6 +63,7 @@ Keep in mind that this will not work in a Mac OS operating system.
 We will run fastqc for the raw reads to get an idea of the sample quality. 
 
 ### 3.1) Installing fastqc
+
 To install fastqc, you can run the [fastqc_intall_linux.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/fastqc_intall_linux.sh") script, *or* run the following commands:
 
 `wget  -P ./software https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip --no-check-certificate` 
@@ -71,6 +73,7 @@ To install fastqc, you can run the [fastqc_intall_linux.sh]("/Users/u2095750/Doc
 `chmod a+x ./software/FastQC/fastqc`
 
 ### 3.2) Running fastqc
+
 You can now run fastqc in your raw data by running the [fastqc.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/fastqc.sh") script *or* by running: 
 
 `for i in ./raw_data/*.fastq.gz`
@@ -120,6 +123,7 @@ We should now gunzip the compressed files to feed them to the alignment tool. Th
 Now my raw rad data are ready to be aligned to the reference genome, one sample at the time. First I need to install the alignment tool of my choice. I use bowtie2. (Bowtie2 is already pre-installed in cyverse for me.) 
 
 ### 5.1) Installing bowtie2
+
 If you need to install bowtie2, you need to run the bowtie2_install_linux.sh script ([bowtie2_install_linux.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/bowtie2_install_linux.sh")) *or* the bowtie2_install_mac.sh script ([bowtie2_install_mac.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/bowtie2_install_mac.sh")) script *or* run the following commands:
 
 `wget  -P ./software https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.4.5/bowtie2-2.4.5-linux-x86_64.zip --no-check-certificate`
@@ -128,6 +132,7 @@ If you need to install bowtie2, you need to run the bowtie2_install_linux.sh scr
 `mv bowtie2-2.4.5-linux-x86_64 software`
 
 ### 5.2) Downloading the reference genome
+
 After installation, you can prepare for the alignment. 
 
 `mkdir reference`
@@ -139,6 +144,7 @@ Download the reference genome (one file for whole genome and one file for cds re
 `wget  -P ./reference https://ftp.cngb.org/pub/CNSA/data3/CNP0000674/CNS0327487/CNA0019284/Fpum.genome.cds.fa.gz --no-check-certificate `
 
 ### 5.3) Indexing the reference genome
+
 First step is to index the reference genome. 
 Run reference_index.sh ([reference_index.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/reference_index.sh")) *or* reference_index_mac.sh ([reference_index_mac.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/reference_index_mac.sh")) *or* run the following commands: 
 
@@ -151,6 +157,7 @@ Run reference_index.sh ([reference_index.sh]("/Users/u2095750/Documents/GitHub/w
 Now we are ready to align our short reads to the reference. 
 
 ### 5.4) Running bowtie2
+
 I use default parameters as they seem to work okay for my analysis. First, make a folder for results:
 
 `mkdir alignment_results`
@@ -179,6 +186,7 @@ Alternatively, save the terminal output: this gives you information on the align
 We will also need to generate the .bam files and index them. 
 
 ### 5.5) Install samtools
+
 First we need to install samtools. Run the samtools_install.sh script ([samtools_install.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/samtools_install.sh")) *or* run:
 
 `wget -P ./software https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 -O samtools.tar.bz2`
@@ -188,6 +196,7 @@ First we need to install samtools. Run the samtools_install.sh script ([samtools
 `cd ..`
 
 ### 5.6) Convert .sam to .bam and index .bam files
+
 Make .bam files and index them by running the samtools.sh ([samtools.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/samtools.sh")) script, *or* samtools_mac.sh ([samtools_mac.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/samtools_mac.sh")) (if samtools is preinstalled in your local machine in any path) *or* the following commands:
 
 `for i in ./alignment_results/*.sam`
@@ -201,5 +210,53 @@ Make .bam files and index them by running the samtools.sh ([samtools.sh]("/Users
 `done`
 
 ## 6) SNP calling and Fstatistics
+
+Once the raw data are mapped onto a reference genome, we can run the stacks pipeline. We are using ref_map.pl since our reads have been aligned based on a reference genome. 
+
+### 6.1) Installing Stacks
+
+First we need to install stacks (you need to adjust to your directory/system). 
+
+*This is very tricky to do in a Mac, I haven’t figured out how to install it properly! I did my analysis in the cyverse.* 
+
+Run:
+
+`wget  -P ./software http://creskolab.uoregon.edu/stacks/source/stacks-2.62.tar.gz --no-check-certificate `
+`tar -vxf ./software/stacks-2.62.tar.gz`
+`mv stacks-2.62 software`
+`cd software/stacks-2.62`
+`scl enable devtoolset-8 bash`
+`./configure --prefix /home/sotiriaboutsi`
+`make`
+`make install `
+`cd ..`
+`cd ..`
+
+### 6.2) Preparing the environment
+
+To run the analysis, you need to upload the “population map” .txt files in the *fig_analysis* directory. These files will match the sample names to their assigned population/species. The number (3 or 4) indicates whether data from *F.trichocerasa* have been included (useful as an outgroup). 
+
+The files: 
+
+i) whole genome alignments:
+[wg_3_populations.txt]("/Users/u2095750/Documents/GitHub/website/docs/data files/wg_3_populations.txt")
+[wg_4_populations.txt]("/Users/u2095750/Documents/GitHub/website/docs/data files/wg_4_populations.txt")
+[wg_3_species.txt]("/Users/u2095750/Documents/GitHub/website/docs/data files/wg_3_species.txt")
+[wg_4_species.txt]("/Users/u2095750/Documents/GitHub/website/docs/data files/wg_4_species.txt")
+
+ii) cds alignments:
+[cds_3_populations.txt]("/Users/u2095750/Documents/GitHub/website/docs/data files/cds_3_populations.txt")
+[cds_4_populations.txt]("/Users/u2095750/Documents/GitHub/website/docs/data files/cds_4_populations.txt")
+[cds_3_species.txt]("/Users/u2095750/Documents/GitHub/website/docs/data files/cds_3_species.txt")
+[cds_4_species.txt]("/Users/u2095750/Documents/GitHub/website/docs/data files/cds_4_species.txt")
+
+
+
+
+
+
+
+
+
 
 
