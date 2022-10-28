@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>website2</title>
+<title>website2 - Pipeline of fig data analysis (RADseq data)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -148,7 +85,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html">
- <span class="menu-text">About</span></a>
+ <span class="menu-text">Cheatsheet</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -161,14 +98,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#notes-to-begin-with" id="toc-notes-to-begin-with" class="nav-link active" data-scroll-target="#notes-to-begin-with">0) Notes to begin with</a></li>
+  <li><a href="#the-environment" id="toc-the-environment" class="nav-link" data-scroll-target="#the-environment">1) The environment</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">2) The data</a></li>
+  <li><a href="#quality-control-of-the-data" id="toc-quality-control-of-the-data" class="nav-link" data-scroll-target="#quality-control-of-the-data">3) Quality control of the data</a>
+  <ul class="collapse">
+  <li><a href="#installing-fastqc" id="toc-installing-fastqc" class="nav-link" data-scroll-target="#installing-fastqc">3.1) Installing fastqc</a></li>
+  <li><a href="#running-fastqc" id="toc-running-fastqc" class="nav-link" data-scroll-target="#running-fastqc">3.2) Running fastqc</a></li>
+  </ul></li>
+  <li><a href="#merging-read-files-from-the-same-sample" id="toc-merging-read-files-from-the-same-sample" class="nav-link" data-scroll-target="#merging-read-files-from-the-same-sample">4) Merging read files from the same sample</a></li>
+  <li><a href="#mapping-rad-reads-on-the-reference-genome" id="toc-mapping-rad-reads-on-the-reference-genome" class="nav-link" data-scroll-target="#mapping-rad-reads-on-the-reference-genome">5) Mapping RAD reads on the reference genome</a>
+  <ul class="collapse">
+  <li><a href="#installing-bowtie2" id="toc-installing-bowtie2" class="nav-link" data-scroll-target="#installing-bowtie2">5.1) Installing bowtie2</a></li>
+  <li><a href="#downloading-the-reference-genome" id="toc-downloading-the-reference-genome" class="nav-link" data-scroll-target="#downloading-the-reference-genome">5.2) Downloading the reference genome</a></li>
+  <li><a href="#indexing-the-reference-genome" id="toc-indexing-the-reference-genome" class="nav-link" data-scroll-target="#indexing-the-reference-genome">5.3) Indexing the reference genome</a></li>
+  <li><a href="#running-bowtie2" id="toc-running-bowtie2" class="nav-link" data-scroll-target="#running-bowtie2">5.4) Running bowtie2</a></li>
+  <li><a href="#install-samtools" id="toc-install-samtools" class="nav-link" data-scroll-target="#install-samtools">5.5) Install samtools</a></li>
+  <li><a href="#convert-.sam-to-.bam-and-index-.bam-files" id="toc-convert-.sam-to-.bam-and-index-.bam-files" class="nav-link" data-scroll-target="#convert-.sam-to-.bam-and-index-.bam-files">5.6) Convert .sam to .bam and index .bam files</a></li>
+  </ul></li>
+  <li><a href="#snp-calling-and-fstatistics" id="toc-snp-calling-and-fstatistics" class="nav-link" data-scroll-target="#snp-calling-and-fstatistics">6) SNP calling and Fstatistics</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">website2</h1>
+<h1 class="title">Pipeline of fig data analysis (RADseq data)</h1>
 </div>
 
 
@@ -183,16 +144,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
+<p><em>This is a Quarto website. To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</em></p>
+<section id="notes-to-begin-with" class="level2">
+<h2 class="anchored" data-anchor-id="notes-to-begin-with">0) Notes to begin with</h2>
+<ul>
+<li>You might want to edit the installation scripts to fit</li>
+</ul>
+<ol type="i">
+<li>your system (Linux vs Mac)</li>
+<li>the version of the software (latest for August 2022 documented here).</li>
+</ol>
+<ul>
+<li>Depending on your system, you can run a script using (for example):</li>
+</ul>
+<p><code>sbatch my_script.sh</code> (if your HPC system is using the slurm workload manager). To check status of your job, run (for example): <code>squeue --user=yourname --long</code></p>
+<p><code>sh my_script.sh</code> (for a usual script run)</p>
+<ul>
+<li>If you are working on a Mac OS, use this command when downloading through url links instead of the wget command:</li>
+</ul>
+<p><code>curl -O url.link</code></p>
+<ul>
+<li><p>If you have the programs already installed, feel free to adjust your code to simplify the script.</p></li>
+<li><p>To ensure your scripts are executable, change the permissions by running: <code>chmod a+x script.sh</code></p></li>
+<li><p>Always check the terminal output (or slurm-job.out file)!</p></li>
+<li><p>Sadly, Stacks is very tricky to install in a Mac. You might want to consider doing the analysis in a Linux environment instead.</p></li>
+</ul>
+</section>
+<section id="the-environment" class="level2">
+<h2 class="anchored" data-anchor-id="the-environment">1) The environment</h2>
+<p>To ensure this pipeline will work on your system, you need to have the same environment setup as the one described here. For a start, in your current folder = directory (I called this <strong>fig_analysis</strong>) you need:</p>
+<ol type="i">
+<li>one folder with your raw data (fastq.gz), named <strong>raw_data</strong>. You can create this directory by running:</li>
+</ol>
+<p><code>mkdir raw_data</code></p>
+<p>Then, upload/transfer your data in this directory. You can do this by running (for example in my case):</p>
+<p><code>scp 784*fastq.gz sotiriaboutsi@cyverse.warwick.ac.uk:/home/sotiriaboutsi/fig_analysis/raw_data</code></p>
+<ol start="2" type="i">
+<li>one folder with the required software (we will install as we go). You can create this directory by running:</li>
+</ol>
+<p><code>mkdir software</code></p>
+</section>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">2) The data</h2>
+<p>Our data are single-end RAD-seq reads, demultiplexed by SNPSaurus (separate files for each run per sample) and have a single index barcode (no inline barcode in sequence, no need to trim).</p>
+<p>Each sample has reads from multiple runs. To view first 10 lines of the data, you can run:</p>
+<p><code>zcat ./raw_data/filename.gz | head -10</code></p>
+<p>Keep in mind that this will not work in a Mac OS operating system.</p>
+</section>
+<section id="quality-control-of-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="quality-control-of-the-data">3) Quality control of the data</h2>
+<p>We will run fastqc for the raw reads to get an idea of the sample quality.</p>
+<section id="installing-fastqc" class="level3">
+<h3 class="anchored" data-anchor-id="installing-fastqc">3.1) Installing fastqc</h3>
+<p>To install fastqc, you can run the <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/fastqc_intall_linux.sh&quot;">fastqc_intall_linux.sh</a> script, <em>or</em> run the following commands:</p>
+<p><code>wget  -P ./software https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip --no-check-certificate</code></p>
+<p><code>unzip ./software/fastqc_v0.11.9.zip</code> <code>mv FastQC software</code> <code>chmod a+x ./software/FastQC/fastqc</code></p>
+</section>
+<section id="running-fastqc" class="level3">
+<h3 class="anchored" data-anchor-id="running-fastqc">3.2) Running fastqc</h3>
+<p>You can now run fastqc in your raw data by running the <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/fastqc.sh&quot;">fastqc.sh</a> script <em>or</em> by running:</p>
+<p><code>for i in ./raw_data/*.fastq.gz</code> <code>do</code> <code>./software/FastQC/fastqc ${i}</code> <code>done</code></p>
+<p>You can now make a new folder called <strong>fastqc_results</strong> and move there the results of the fastqc analysis:</p>
+<p><code>mkdir fastqc_results</code> <code>mv ./raw_data/*fastqc* ./fastqc_results</code></p>
+<p>You can then download the .html files and open for inspection. To download the files to your local machine, you can use (for example):</p>
+<p><code>scp sotiriaboutsi@cyverse.warwick.ac.uk:/home/sotiriaboutsi/fig_analysis/fastqc_results/"*"html .</code></p>
+<p>To download the entire directory to your local machine, you can use (for example):</p>
+<p><code>scp -r sotiriaboutsi@cyverse.warwick.ac.uk:/home/sotiriaboutsi/fig_analysis/fastqc_results .</code></p>
+</section>
+</section>
+<section id="merging-read-files-from-the-same-sample" class="level2">
+<h2 class="anchored" data-anchor-id="merging-read-files-from-the-same-sample">4) Merging read files from the same sample</h2>
+<p>Since each sample has reads in multiple runs, I merge the raw files to a single file for each sample. To do this, I need to match all the relevant radtags to the right sample based on the key file provided by SNPSaurus (you can have a look at the key file here: <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/fig1617_key.txt&quot;">fig1617_key.txt</a>) Due to the relative complexity of the matching (radtags are shared across runs) I will do this manually to ensure there are no mistakes, so there is no shortcut or for-loop possible for this step. You can decide to exclude some raw reads file if the quality is bad.</p>
+<p>First, I create a folder for the coming merged files:</p>
+<p><code>mkdir raw_data_per_sample</code></p>
+<p>Then I run the script merging_data.sh (you can find it here:<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/merging_data.sh&quot;">merging_data.sh</a>) which replicates this type of command for each sample:</p>
+<p><code>cat ./raw_data/raw_file_1.fastq.gz ./raw_data/raw_file_2.fastq.gz &gt; ./raw_data_per_sample/sample_name.gz</code></p>
+<p>After this step, you might want to free space by removing the raw reads. <strong>Be careful and make sure you do not need them anymore, as uploading again will be a big waste of time!</strong></p>
+<p><code>rm -r raw_reads</code></p>
+<p>We should now gunzip the compressed files to feed them to the alignment tool. This takes a lot of storage, so ensure you have enough space in your device.</p>
+<p><code>gunzip ./raw_data_per_sample/*</code></p>
+</section>
+<section id="mapping-rad-reads-on-the-reference-genome" class="level2">
+<h2 class="anchored" data-anchor-id="mapping-rad-reads-on-the-reference-genome">5) Mapping RAD reads on the reference genome</h2>
+<p>Now my raw rad data are ready to be aligned to the reference genome, one sample at the time. First I need to install the alignment tool of my choice. I use bowtie2. (Bowtie2 is already pre-installed in cyverse for me.)</p>
+<section id="installing-bowtie2" class="level3">
+<h3 class="anchored" data-anchor-id="installing-bowtie2">5.1) Installing bowtie2</h3>
+<p>If you need to install bowtie2, you need to run the bowtie2_install_linux.sh script (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/bowtie2_install_linux.sh&quot;">bowtie2_install_linux.sh</a>) <em>or</em> the bowtie2_install_mac.sh script (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/bowtie2_install_mac.sh&quot;">bowtie2_install_mac.sh</a>) script <em>or</em> run the following commands:</p>
+<p><code>wget  -P ./software https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.4.5/bowtie2-2.4.5-linux-x86_64.zip --no-check-certificate</code></p>
+<p><code>unzip ./software/bowtie2-2.4.5-linux-x86_64.zip</code> <code>mv bowtie2-2.4.5-linux-x86_64 software</code></p>
+</section>
+<section id="downloading-the-reference-genome" class="level3">
+<h3 class="anchored" data-anchor-id="downloading-the-reference-genome">5.2) Downloading the reference genome</h3>
+<p>After installation, you can prepare for the alignment.</p>
+<p><code>mkdir reference</code></p>
+<p>Download the reference genome (one file for whole genome and one file for cds regions only) by running reference_download.sh script (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/reference_download.sh&quot;">reference_download.sh</a>) <em>or</em> by running:</p>
+<p><code>wget  -P ./reference https://ftp.cngb.org/pub/CNSA/data3/CNP0000674/CNS0327487/CNA0019284/Fpum.genome.fa.gz --no-check-certificate</code></p>
+<p><code>wget  -P ./reference https://ftp.cngb.org/pub/CNSA/data3/CNP0000674/CNS0327487/CNA0019284/Fpum.genome.cds.fa.gz --no-check-certificate</code></p>
+</section>
+<section id="indexing-the-reference-genome" class="level3">
+<h3 class="anchored" data-anchor-id="indexing-the-reference-genome">5.3) Indexing the reference genome</h3>
+<p>First step is to index the reference genome. Run reference_index.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/reference_index.sh&quot;">reference_index.sh</a>) <em>or</em> reference_index_mac.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/reference_index_mac.sh&quot;">reference_index_mac.sh</a>) <em>or</em> run the following commands:</p>
+<p><code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2-build -f ./reference/Fpum.genome.fa.gz index_pum</code></p>
+<p><code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2-build -f ./reference/Fpum.genome.cds.fa.gz index_cds_pum</code></p>
+<p><code>mv index* ./reference</code></p>
+<p>Now we are ready to align our short reads to the reference.</p>
+</section>
+<section id="running-bowtie2" class="level3">
+<h3 class="anchored" data-anchor-id="running-bowtie2">5.4) Running bowtie2</h3>
+<p>I use default parameters as they seem to work okay for my analysis. First, make a folder for results:</p>
+<p><code>mkdir alignment_results</code></p>
+<p>Use the alignment_wg.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/alignment_wg.sh&quot;">alignment_wg.sh</a>) and alignment_cds.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/alignment_cds.sh&quot;">alignment_cds.sh</a>) scripts <em>or</em> run the following commands:</p>
+<p><code>for i in ./raw_data_per_sample/*.fastq</code> <code>do</code> <code>echo ${i}</code> <code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_pum -U ${i} -S ${i}_wg.sam</code> <code>done</code></p>
+<p><code>mv ./raw_data_per_sample/*.sam ./alignment_results</code></p>
+<p><code>for i in ./raw_data_per_sample/*.fastq</code> <code>do</code> <code>echo ${i}</code> <code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_cds_pum -U ${i} -S ${i}_cds.sam</code> <code>done</code></p>
+<p><code>mv ./raw_data_per_sample/*.sam ./alignment_results</code></p>
+<p><strong>! Do NOT delete the slurm-out files from these jobs! Alternatively, save the terminal output: this gives you information on the alignment details. </strong></p>
+<p>We will also need to generate the .bam files and index them.</p>
+</section>
+<section id="install-samtools" class="level3">
+<h3 class="anchored" data-anchor-id="install-samtools">5.5) Install samtools</h3>
+<p>First we need to install samtools. Run the samtools_install.sh script (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/samtools_install.sh&quot;">samtools_install.sh</a>) <em>or</em> run:</p>
+<p><code>wget -P ./software https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 -O samtools.tar.bz2</code> <code>tar -xjvf ./software/samtools.tar.bz2</code> <code>cd ./software/samtools-1.3.1</code> <code>make</code> <code>cd ..</code></p>
+</section>
+<section id="convert-.sam-to-.bam-and-index-.bam-files" class="level3">
+<h3 class="anchored" data-anchor-id="convert-.sam-to-.bam-and-index-.bam-files">5.6) Convert .sam to .bam and index .bam files</h3>
+<p>Make .bam files and index them by running the samtools.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/samtools.sh&quot;">samtools.sh</a>) script, <em>or</em> samtools_mac.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/samtools_mac.sh&quot;">samtools_mac.sh</a>) (if samtools is preinstalled in your local machine in any path) <em>or</em> the following commands:</p>
+<p><code>for i in ./alignment_results/*.sam</code> <code>do</code> <code>./software/samtools-1.3.1/samtools sort -o ${i}.bam ${i}</code> <code>done</code></p>
+<p><code>for i in ./alignment_results/*.bam</code> <code>do</code> <code>./software/samtools-1.3.1/samtools index ${i}</code> <code>done</code></p>
+</section>
+</section>
+<section id="snp-calling-and-fstatistics" class="level2">
+<h2 class="anchored" data-anchor-id="snp-calling-and-fstatistics">6) SNP calling and Fstatistics</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
