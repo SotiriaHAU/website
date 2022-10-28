@@ -7,7 +7,7 @@ website:
   navbar:
     left:
       - text: "| The project |"
-        file: index2.qmd
+        file: about2.qmd
       - text: "| Data Analysis (RAD-seq) - *Ficus* |"
         file: index.qmd
       - text: "| Comments |"
