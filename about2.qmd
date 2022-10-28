@@ -2,4 +2,4 @@
 title: "The project"
 ---
 
-About our project
+About our project...
