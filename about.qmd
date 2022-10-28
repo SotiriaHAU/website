@@ -1,12 +1,12 @@
 ---
-title: "Cheatsheet"
+title: "Comments"
 ---
 
-## Pipeline of fig data analysis -August 2022
+# Pipeline of fig data analysis -August 2022
 
 files directories commands scripts
 
-Notes: 
+##Notes: 
 
 -	You might want to edit the installation scripts to fit i) your system (Linux vs Mac), ii) the version of the software (latest for August 2022 documented here). 
 
