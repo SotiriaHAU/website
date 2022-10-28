@@ -4,7 +4,7 @@ title: "Pipeline of fig data analysis (RADseq data)"
 
 *This is a Quarto website. To learn more about Quarto websites visit <https://quarto.org/docs/websites>.*
 
-## 0) Notes to begin with
+## Notes to begin with
 
 -   You might want to edit the installation scripts to fit
 
