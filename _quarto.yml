@@ -8,8 +8,8 @@ website:
     left:
       - text: "| Data Analysis (RAD-seq) - *Ficus* |"
         file: index.qmd
-      - Comments.qmd 
-
+      - text: "| Comments |"
+        file: about.qmd
 
 format:
   html:
