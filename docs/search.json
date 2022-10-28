@@ -75,5 +75,75 @@
     "title": "The project",
     "section": "",
     "text": "About our project…"
+  },
+  {
+    "objectID": "figanalysis.html",
+    "href": "figanalysis.html",
+    "title": "Pipeline of fig data analysis (RADseq data)",
+    "section": "",
+    "text": "This is a Quarto website. To learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "figanalysis.html#the-environment",
+    "href": "figanalysis.html#the-environment",
+    "title": "Pipeline of fig data analysis (RADseq data)",
+    "section": "1) The environment",
+    "text": "1) The environment\nTo ensure this pipeline will work on your system, you need to have the same environment setup as the one described here. For a start, in your current folder = directory (I called this fig_analysis) you need:\n\none folder with your raw data (fastq.gz), named raw_data. You can create this directory by running:\n\nmkdir raw_data\nThen, upload/transfer your data in this directory. You can do this by running (for example in my case):\nscp 784*fastq.gz sotiriaboutsi@cyverse.warwick.ac.uk:/home/sotiriaboutsi/fig_analysis/raw_data\n\none folder with the required software (we will install as we go). You can create this directory by running:\n\nmkdir software"
+  },
+  {
+    "objectID": "figanalysis.html#the-data",
+    "href": "figanalysis.html#the-data",
+    "title": "Pipeline of fig data analysis (RADseq data)",
+    "section": "2) The data",
+    "text": "2) The data\nOur data are single-end RAD-seq reads, demultiplexed by SNPSaurus (separate files for each run per sample) and have a single index barcode (no inline barcode in sequence, no need to trim).\nEach sample has reads from multiple runs. To view first 10 lines of the data, you can run:\nzcat ./raw_data/filename.gz | head -10\nKeep in mind that this will not work in a Mac OS operating system."
+  },
+  {
+    "objectID": "figanalysis.html#quality-control-of-the-data",
+    "href": "figanalysis.html#quality-control-of-the-data",
+    "title": "Pipeline of fig data analysis (RADseq data)",
+    "section": "3) Quality control of the data",
+    "text": "3) Quality control of the data\nWe will run fastqc for the raw reads to get an idea of the sample quality.\n\n3.1) Installing fastqc\nTo install fastqc, you can run the fastqc_intall_linux.sh script, or run the following commands:\nwget  -P ./software https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip --no-check-certificate\nunzip ./software/fastqc_v0.11.9.zip mv FastQC software chmod a+x ./software/FastQC/fastqc\n\n\n3.2) Running fastqc\nYou can now run fastqc in your raw data by running the fastqc.sh script or by running:\nfor i in ./raw_data/*.fastq.gz do ./software/FastQC/fastqc ${i} done\nYou can now make a new folder called fastqc_results and move there the results of the fastqc analysis:\nmkdir fastqc_results mv ./raw_data/*fastqc* ./fastqc_results\nYou can then download the .html files and open for inspection. To download the files to your local machine, you can use (for example):\nscp sotiriaboutsi@cyverse.warwick.ac.uk:/home/sotiriaboutsi/fig_analysis/fastqc_results/\"*\"html .\nTo download the entire directory to your local machine, you can use (for example):\nscp -r sotiriaboutsi@cyverse.warwick.ac.uk:/home/sotiriaboutsi/fig_analysis/fastqc_results ."
+  },
+  {
+    "objectID": "figanalysis.html#merging-read-files-from-the-same-sample",
+    "href": "figanalysis.html#merging-read-files-from-the-same-sample",
+    "title": "Pipeline of fig data analysis (RADseq data)",
+    "section": "4) Merging read files from the same sample",
+    "text": "4) Merging read files from the same sample\nSince each sample has reads in multiple runs, I merge the raw files to a single file for each sample. To do this, I need to match all the relevant radtags to the right sample based on the key file provided by SNPSaurus (you can have a look at the key file here: fig1617_key.txt) Due to the relative complexity of the matching (radtags are shared across runs) I will do this manually to ensure there are no mistakes, so there is no shortcut or for-loop possible for this step. You can decide to exclude some raw reads file if the quality is bad.\nFirst, I create a folder for the coming merged files:\nmkdir raw_data_per_sample\nThen I run the script merging_data.sh (you can find it here:merging_data.sh) which replicates this type of command for each sample:\ncat ./raw_data/raw_file_1.fastq.gz ./raw_data/raw_file_2.fastq.gz > ./raw_data_per_sample/sample_name.gz\nAfter this step, you might want to free space by removing the raw reads. Be careful and make sure you do not need them anymore, as uploading again will be a big waste of time!\nrm -r raw_reads\nWe should now gunzip the compressed files to feed them to the alignment tool. This takes a lot of storage, so ensure you have enough space in your device.\ngunzip ./raw_data_per_sample/*"
+  },
+  {
+    "objectID": "figanalysis.html#mapping-rad-reads-on-the-reference-genome",
+    "href": "figanalysis.html#mapping-rad-reads-on-the-reference-genome",
+    "title": "Pipeline of fig data analysis (RADseq data)",
+    "section": "5) Mapping RAD reads on the reference genome",
+    "text": "5) Mapping RAD reads on the reference genome\nNow my raw rad data are ready to be aligned to the reference genome, one sample at the time. First I need to install the alignment tool of my choice. I use bowtie2. (Bowtie2 is already pre-installed in cyverse for me.)\n\n5.1) Installing bowtie2\nIf you need to install bowtie2, you need to run the bowtie2_install_linux.sh script (bowtie2_install_linux.sh) or the bowtie2_install_mac.sh script (bowtie2_install_mac.sh) script or run the following commands:\nwget  -P ./software https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.4.5/bowtie2-2.4.5-linux-x86_64.zip --no-check-certificate\nunzip ./software/bowtie2-2.4.5-linux-x86_64.zip mv bowtie2-2.4.5-linux-x86_64 software\n\n\n5.2) Downloading the reference genome\nAfter installation, you can prepare for the alignment.\nmkdir reference\nDownload the reference genome (one file for whole genome and one file for cds regions only) by running reference_download.sh script (reference_download.sh) or by running:\nwget  -P ./reference https://ftp.cngb.org/pub/CNSA/data3/CNP0000674/CNS0327487/CNA0019284/Fpum.genome.fa.gz --no-check-certificate\nwget  -P ./reference https://ftp.cngb.org/pub/CNSA/data3/CNP0000674/CNS0327487/CNA0019284/Fpum.genome.cds.fa.gz --no-check-certificate\n\n\n5.3) Indexing the reference genome\nFirst step is to index the reference genome. Run reference_index.sh (reference_index.sh) or reference_index_mac.sh (reference_index_mac.sh) or run the following commands:\n./software/bowtie2-2.4.5-linux-x86_64/bowtie2-build -f ./reference/Fpum.genome.fa.gz index_pum\n./software/bowtie2-2.4.5-linux-x86_64/bowtie2-build -f ./reference/Fpum.genome.cds.fa.gz index_cds_pum\nmv index* ./reference\nNow we are ready to align our short reads to the reference.\n\n\n5.4) Running bowtie2\nI use default parameters as they seem to work okay for my analysis. First, make a folder for results:\nmkdir alignment_results\nUse the alignment_wg.sh (alignment_wg.sh) and alignment_cds.sh (alignment_cds.sh) scripts or run the following commands:\nfor i in ./raw_data_per_sample/*.fastq do echo ${i} ./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_pum -U ${i} -S ${i}_wg.sam done\nmv ./raw_data_per_sample/*.sam ./alignment_results\nfor i in ./raw_data_per_sample/*.fastq do echo ${i} ./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_cds_pum -U ${i} -S ${i}_cds.sam done\nmv ./raw_data_per_sample/*.sam ./alignment_results\n! Do NOT delete the slurm-out files from these jobs! Alternatively, save the terminal output: this gives you information on the alignment details.\nWe will also need to generate the .bam files and index them.\n\n\n5.5) Install samtools\nFirst we need to install samtools. Run the samtools_install.sh script (samtools_install.sh) or run:\nwget -P ./software https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 -O samtools.tar.bz2 tar -xjvf ./software/samtools.tar.bz2 cd ./software/samtools-1.3.1 make cd ..\n\n\n5.6) Convert .sam to .bam and index .bam files\nMake .bam files and index them by running the samtools.sh (samtools.sh) script, or samtools_mac.sh (samtools_mac.sh) (if samtools is preinstalled in your local machine in any path) or the following commands:\nfor i in ./alignment_results/*.sam do ./software/samtools-1.3.1/samtools sort -o ${i}.bam ${i} done\nfor i in ./alignment_results/*.bam do ./software/samtools-1.3.1/samtools index ${i} done"
+  },
+  {
+    "objectID": "figanalysis.html#snp-calling-and-fstatistics",
+    "href": "figanalysis.html#snp-calling-and-fstatistics",
+    "title": "Pipeline of fig data analysis (RADseq data)",
+    "section": "6) SNP calling and Fstatistics",
+    "text": "6) SNP calling and Fstatistics\nOnce the raw data are mapped onto a reference genome, we can run the stacks pipeline. We are using ref_map.pl since our reads have been aligned based on a reference genome.\n\n6.1) Installing Stacks\nFirst we need to install stacks (you need to adjust to your directory/system).\nThis is very tricky to do in a Mac, I haven’t figured out how to install it properly! I did my analysis in the cyverse.\nRun:\nwget  -P ./software http://creskolab.uoregon.edu/stacks/source/stacks-2.62.tar.gz --no-check-certificate tar -vxf ./software/stacks-2.62.tar.gz mv stacks-2.62 software cd software/stacks-2.62 scl enable devtoolset-8 bash ./configure --prefix /home/sotiriaboutsi make make install cd .. cd ..\n\n\n6.2) Preparing the environment\nTo run the analysis, you need to upload the “population map” .txt files in the fig_analysis directory. These files will match the sample names to their assigned population/species. The number (3 or 4) indicates whether data from F.trichocerasa have been included (useful as an outgroup).\nThe files:\n\nwhole genome alignments: wg_3_populations.txt wg_4_populations.txt wg_3_species.txt wg_4_species.txt\ncds alignments: cds_3_populations.txt cds_4_populations.txt cds_3_species.txt cds_4_species.txt"
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "The project",
+    "section": "",
+    "text": "About our project…"
+  },
+  {
+    "objectID": "figanalysistext.html",
+    "href": "figanalysistext.html",
+    "title": "Comments",
+    "section": "",
+    "text": "some info for the analysis…"
+  },
+  {
+    "objectID": "figanalysis.html#notes-to-begin-with",
+    "href": "figanalysis.html#notes-to-begin-with",
+    "title": "Pipeline of fig data analysis (RADseq data)",
+    "section": "Notes to begin with",
+    "text": "Notes to begin with\n\nYou might want to edit the installation scripts to fit\n\n\nyour system (Linux vs Mac)\nthe version of the software (latest for August 2022 documented here).\n\n\nDepending on your system, you can run a script using (for example):\n\nsbatch my_script.sh (if your HPC system is using the slurm workload manager). To check status of your job, run (for example): squeue --user=yourname --long\nsh my_script.sh (for a usual script run)\n\nIf you are working on a Mac OS, use this command when downloading through url links instead of the wget command:\n\ncurl -O url.link\n\nIf you have the programs already installed, feel free to adjust your code to simplify the script.\nTo ensure your scripts are executable, change the permissions by running: chmod a+x script.sh\nAlways check the terminal output (or slurm-job.out file)!\nSadly, Stacks is very tricky to install in a Mac. You might want to consider doing the analysis in a Linux environment instead."
   }
 ]
