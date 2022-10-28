@@ -9,8 +9,8 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Cheatsheet",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "files directories commands scripts\nNotes:\n\nYou might want to edit the installation scripts to fit i) your system (Linux vs Mac), ii) the version of the software (latest for August 2022 documented here).\nDepending on your system, you can run a script using (for example):\n\nsbatch my_script.sh (if your HPC system is using the slurm workload manager). To check status of your job, run (for example): squeue –user=sotiriaboutsi –long\nsh my_script.sh (for a usual script run)\n\nIf you are working on a Mac OS, use this command when downloading through url links instead of the wget command:\n\ncurl -O url.link\n\nIf you have the programs already installed, feel free to adjust your code to simplify the script.\nTo ensure your scripts are executable, change the permissions by running: chmod a+x script.sh\nAlways check the terminal output (or slurm-job.out file)!\nStacks is very tricky to install in a Mac. You might want to consider doing the analysis in a Linux environment instead.\n\nexample script"
   }
 ]

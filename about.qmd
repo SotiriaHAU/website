@@ -1,9 +1,35 @@
 ---
-title: "About"
+title: "Cheatsheet"
 ---
 
-About this site
+## Pipeline of fig data analysis -August 2022
 
-```{r}
-1 + 1
-```
+files directories commands scripts
+
+Notes: 
+
+-	You might want to edit the installation scripts to fit i) your system (Linux vs Mac), ii) the version of the software (latest for August 2022 documented here). 
+
+-	Depending on your system, you can run a script using (for example):
+
+
+`sbatch my_script.sh` (if your HPC system is using the slurm workload manager). 
+To check status of your job, run (for example):
+squeue --user=sotiriaboutsi --long
+
+
+`sh my_script.sh` (for a usual script run)
+
+-	If you are working on a Mac OS, use this command when downloading through url links instead of the wget command: 
+
+`curl -O url.link`
+
+-	If you have the programs already installed, feel free to adjust your code to simplify the script. 
+
+-	To ensure your scripts are executable, change the permissions by running:
+chmod a+x script.sh
+
+-	Always check the terminal output (or slurm-job.out file)!
+-	Stacks is very tricky to install in a Mac. You might want to consider doing the analysis in a Linux environment instead. 
+
+[example script]()
