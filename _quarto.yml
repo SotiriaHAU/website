@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "fig project 2"
+  title: "fig project"
   navbar:
     left:
       - text: "|  The project  |"
