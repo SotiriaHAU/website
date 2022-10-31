@@ -1,5 +1,5 @@
 ---
-title: "Pipeline of fig data analysis (RADseq data)"
+title: "|  Data Analysis (RAD-seq) - *Ficus*  |"
 ---
 
 *This is a Quarto website. To learn more about Quarto websites visit <https://quarto.org/docs/websites>.*
