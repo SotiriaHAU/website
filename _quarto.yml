@@ -4,7 +4,6 @@ project:
 
 website:
   title: "fig project 2"
-  site-url: https://sotiriahau.github.io/website
   navbar:
     left:
       - text: "|  The project  |"
