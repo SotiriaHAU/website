@@ -3,13 +3,14 @@ project:
   output-dir: docs
 
 website:
-  title: "fig project"
+  title: "fig project 2"
+  site-url: https://sotiriahau.github.io/website
   navbar:
     left:
       - text: "|  The project  |"
         file: summary.qmd
-        file: figanalysis.qmd
-        file: figanalysistext.qmd
+      - figanalysis.qmd
+      - figanalysistext.qmd
 
 format:
   html:
