@@ -61,7 +61,7 @@ We will run fastqc for the raw reads to get an idea of the sample quality.
 
 ### 3.1) Installing fastqc
 
-To install fastqc, you can run the [fastqc_intall_linux.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/fastqc_intall_linux.sh%22) script, *or* run the following commands:
+To install fastqc, you can run the [fastqc_intall_linux.sh](./docs/script files/fastqc_intall_linux.sh) script, *or* run the following commands:
 
 `wget  -P ./software https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip --no-check-certificate`
 
@@ -69,7 +69,7 @@ To install fastqc, you can run the [fastqc_intall_linux.sh](%22/Users/u2095750/D
 
 ### 3.2) Running fastqc
 
-You can now run fastqc in your raw data by running the [fastqc.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/fastqc.sh%22) script *or* by running:
+You can now run fastqc in your raw data by running the [fastqc.sh](./docs/script files/fastqc.sh) script *or* by running:
 
 `for i in ./raw_data/*.fastq.gz` `do` `./software/FastQC/fastqc ${i}` `done`
 
@@ -87,13 +87,13 @@ To download the entire directory to your local machine, you can use (for example
 
 ## 4) Merging read files from the same sample
 
-Since each sample has reads in multiple runs, I merge the raw files to a single file for each sample. To do this, I need to match all the relevant radtags to the right sample based on the key file provided by SNPSaurus (you can have a look at the key file here: [fig1617_key.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/fig1617_key.txt%22)) Due to the relative complexity of the matching (radtags are shared across runs) I will do this manually to ensure there are no mistakes, so there is no shortcut or for-loop possible for this step. You can decide to exclude some raw reads file if the quality is bad.
+Since each sample has reads in multiple runs, I merge the raw files to a single file for each sample. To do this, I need to match all the relevant radtags to the right sample based on the key file provided by SNPSaurus (you can have a look at the key file here: [fig1617_key.txt](./docs/data files/fig1617_key.txt)) Due to the relative complexity of the matching (radtags are shared across runs) I will do this manually to ensure there are no mistakes, so there is no shortcut or for-loop possible for this step. You can decide to exclude some raw reads file if the quality is bad.
 
 First, I create a folder for the coming merged files:
 
 `mkdir raw_data_per_sample`
 
-Then I run the script merging_data.sh (you can find it here:[merging_data.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/merging_data.sh%22)) which replicates this type of command for each sample:
+Then I run the script merging_data.sh (you can find it here:[merging_data.sh](./docs/script files/merging_data.sh)) which replicates this type of command for each sample:
 
 `cat ./raw_data/raw_file_1.fastq.gz ./raw_data/raw_file_2.fastq.gz > ./raw_data_per_sample/sample_name.gz`
 
@@ -111,7 +111,7 @@ Now my raw rad data are ready to be aligned to the reference genome, one sample 
 
 ### 5.1) Installing bowtie2
 
-If you need to install bowtie2, you need to run the bowtie2_install_linux.sh script ([bowtie2_install_linux.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/bowtie2_install_linux.sh%22)) *or* the bowtie2_install_mac.sh script ([bowtie2_install_mac.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/bowtie2_install_mac.sh%22)) script *or* run the following commands:
+If you need to install bowtie2, you need to run the bowtie2_install_linux.sh script ([bowtie2_install_linux.sh](./docs/script files/bowtie2_install_linux.sh)) *or* the bowtie2_install_mac.sh script ([bowtie2_install_mac.sh](./docs/script files/bowtie2_install_mac.sh)) script *or* run the following commands:
 
 `wget  -P ./software https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.4.5/bowtie2-2.4.5-linux-x86_64.zip --no-check-certificate`
 
@@ -123,7 +123,7 @@ After installation, you can prepare for the alignment.
 
 `mkdir reference`
 
-Download the reference genome (one file for whole genome and one file for cds regions only) by running reference_download.sh script ([reference_download.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/reference_download.sh%22)) *or* by running:
+Download the reference genome (one file for whole genome and one file for cds regions only) by running reference_download.sh script ([reference_download.sh](./docs/script files/reference_download.sh)) *or* by running:
 
 `wget  -P ./reference https://ftp.cngb.org/pub/CNSA/data3/CNP0000674/CNS0327487/CNA0019284/Fpum.genome.fa.gz --no-check-certificate`
 
@@ -131,7 +131,7 @@ Download the reference genome (one file for whole genome and one file for cds re
 
 ### 5.3) Indexing the reference genome
 
-First step is to index the reference genome. Run reference_index.sh ([reference_index.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/reference_index.sh%22)) *or* reference_index_mac.sh ([reference_index_mac.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/reference_index_mac.sh%22)) *or* run the following commands:
+First step is to index the reference genome. Run reference_index.sh ([reference_index.sh](./docs/script files/reference_index.sh)) *or* reference_index_mac.sh ([reference_index_mac.sh](./docs/script files/reference_index_mac.sh)) *or* run the following commands:
 
 `./software/bowtie2-2.4.5-linux-x86_64/bowtie2-build -f ./reference/Fpum.genome.fa.gz index_pum`
 
@@ -147,7 +147,7 @@ I use default parameters as they seem to work okay for my analysis. First, make 
 
 `mkdir alignment_results`
 
-Use the alignment_wg.sh ([alignment_wg.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/alignment_wg.sh%22)) and alignment_cds.sh ([alignment_cds.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/alignment_cds.sh%22)) scripts *or* run the following commands:
+Use the alignment_wg.sh ([alignment_wg.sh](./docs/script files/alignment_wg.sh)) and alignment_cds.sh ([alignment_cds.sh](./docs/script files/alignment_cds.sh)) scripts *or* run the following commands:
 
 `for i in ./raw_data_per_sample/*.fastq` `do` `echo ${i}` `./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_pum -U ${i} -S ${i}_wg.sam` `done`
 
@@ -163,13 +163,13 @@ We will also need to generate the .bam files and index them.
 
 ### 5.5) Install samtools
 
-First we need to install samtools. Run the samtools_install.sh script ([samtools_install.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/samtools_install.sh%22)) *or* run:
+First we need to install samtools. Run the samtools_install.sh script ([samtools_install.sh](./docs/script files/samtools_install.sh)) *or* run:
 
 `wget -P ./software https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 -O samtools.tar.bz2` `tar -xjvf ./software/samtools.tar.bz2` `cd ./software/samtools-1.3.1` `make` `cd ..`
 
 ### 5.6) Convert .sam to .bam and index .bam files
 
-Make .bam files and index them by running the samtools.sh ([samtools.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/samtools.sh%22)) script, *or* samtools_mac.sh [samtools_mac.sh](./docs/script files/samtools_mac.sh) (if samtools is preinstalled in your local machine in any path) *or* the following commands:
+Make .bam files and index them by running the samtools.sh ([samtools.sh](./docs/script files/samtools.sh)) script, *or* samtools_mac.sh [samtools_mac.sh](./docs/script files/samtools_mac.sh) (if samtools is preinstalled in your local machine in any path) *or* the following commands:
 
 `for i in ./alignment_results/*.sam` `do` `./software/samtools-1.3.1/samtools sort -o ${i}.bam ${i}` `done`
 
@@ -195,9 +195,9 @@ To run the analysis, you need to upload the "population map" .txt files in the *
 
 The files:
 
-i)  whole genome alignments: [wg_3\_populations.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/wg_3_populations.txt%22) [wg_4\_populations.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/wg_4_populations.txt%22) [wg_3\_species.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/wg_3_species.txt%22) [wg_4\_species.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/wg_4_species.txt%22)
+i)  whole genome alignments: [wg_3\_populations.txt](./docs/data files/wg_3_populations.txt) [wg_4\_populations.txt](./docs/data files/wg_4_populations.txt) [wg_3\_species.txt](./docs/data files/wg_3_species.txt) [wg_4\_species.txt](./docs/data files/wg_4_species.txt)
 
-ii) cds alignments: [cds_3\_populations.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/cds_3_populations.txt%22)
-[cds_4\_populations.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/cds_4_populations.txt%22)
-[cds_3\_species.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/cds_3_species.txt%22)
-[cds_4\_species.txt](%22/Users/u2095750/Documents/GitHub/website/docs/data%20files/cds_4_species.txt%22)
+ii) cds alignments: [cds_3\_populations.txt](./docs/data files/cds_3_populations.txt)
+[cds_4\_populations.txt](./docs/data files/cds_4_populations.txt)
+[cds_3\_species.txt](./docs/data files/cds_3_species.txt)
+[cds_4\_species.txt](./docs/data files/cds_4_species.txt)

@@ -204,13 +204,13 @@ ul.task-list li input[type="checkbox"] {
 <p>We will run fastqc for the raw reads to get an idea of the sample quality.</p>
 <section id="installing-fastqc" class="level3">
 <h3 class="anchored" data-anchor-id="installing-fastqc">3.1) Installing fastqc</h3>
-<p>To install fastqc, you can run the <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/fastqc_intall_linux.sh&quot;">fastqc_intall_linux.sh</a> script, <em>or</em> run the following commands:</p>
+<p>To install fastqc, you can run the <a href="./docs/script files/fastqc_intall_linux.sh">fastqc_intall_linux.sh</a> script, <em>or</em> run the following commands:</p>
 <p><code>wget  -P ./software https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip --no-check-certificate</code></p>
 <p><code>unzip ./software/fastqc_v0.11.9.zip</code> <code>mv FastQC software</code> <code>chmod a+x ./software/FastQC/fastqc</code></p>
 </section>
 <section id="running-fastqc" class="level3">
 <h3 class="anchored" data-anchor-id="running-fastqc">3.2) Running fastqc</h3>
-<p>You can now run fastqc in your raw data by running the <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/fastqc.sh&quot;">fastqc.sh</a> script <em>or</em> by running:</p>
+<p>You can now run fastqc in your raw data by running the <a href="./docs/script files/fastqc.sh">fastqc.sh</a> script <em>or</em> by running:</p>
 <p><code>for i in ./raw_data/*.fastq.gz</code> <code>do</code> <code>./software/FastQC/fastqc ${i}</code> <code>done</code></p>
 <p>You can now make a new folder called <strong>fastqc_results</strong> and move there the results of the fastqc analysis:</p>
 <p><code>mkdir fastqc_results</code> <code>mv ./raw_data/*fastqc* ./fastqc_results</code></p>
@@ -222,10 +222,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="merging-read-files-from-the-same-sample" class="level2">
 <h2 class="anchored" data-anchor-id="merging-read-files-from-the-same-sample">4) Merging read files from the same sample</h2>
-<p>Since each sample has reads in multiple runs, I merge the raw files to a single file for each sample. To do this, I need to match all the relevant radtags to the right sample based on the key file provided by SNPSaurus (you can have a look at the key file here: <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/fig1617_key.txt&quot;">fig1617_key.txt</a>) Due to the relative complexity of the matching (radtags are shared across runs) I will do this manually to ensure there are no mistakes, so there is no shortcut or for-loop possible for this step. You can decide to exclude some raw reads file if the quality is bad.</p>
+<p>Since each sample has reads in multiple runs, I merge the raw files to a single file for each sample. To do this, I need to match all the relevant radtags to the right sample based on the key file provided by SNPSaurus (you can have a look at the key file here: <a href="./docs/data files/fig1617_key.txt">fig1617_key.txt</a>) Due to the relative complexity of the matching (radtags are shared across runs) I will do this manually to ensure there are no mistakes, so there is no shortcut or for-loop possible for this step. You can decide to exclude some raw reads file if the quality is bad.</p>
 <p>First, I create a folder for the coming merged files:</p>
 <p><code>mkdir raw_data_per_sample</code></p>
-<p>Then I run the script merging_data.sh (you can find it here:<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/merging_data.sh&quot;">merging_data.sh</a>) which replicates this type of command for each sample:</p>
+<p>Then I run the script merging_data.sh (you can find it here:<a href="./docs/script files/merging_data.sh">merging_data.sh</a>) which replicates this type of command for each sample:</p>
 <p><code>cat ./raw_data/raw_file_1.fastq.gz ./raw_data/raw_file_2.fastq.gz &gt; ./raw_data_per_sample/sample_name.gz</code></p>
 <p>After this step, you might want to free space by removing the raw reads. <strong>Be careful and make sure you do not need them anymore, as uploading again will be a big waste of time!</strong></p>
 <p><code>rm -r raw_reads</code></p>
@@ -237,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Now my raw rad data are ready to be aligned to the reference genome, one sample at the time. First I need to install the alignment tool of my choice. I use bowtie2. (Bowtie2 is already pre-installed in cyverse for me.)</p>
 <section id="installing-bowtie2" class="level3">
 <h3 class="anchored" data-anchor-id="installing-bowtie2">5.1) Installing bowtie2</h3>
-<p>If you need to install bowtie2, you need to run the bowtie2_install_linux.sh script (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/bowtie2_install_linux.sh&quot;">bowtie2_install_linux.sh</a>) <em>or</em> the bowtie2_install_mac.sh script (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/bowtie2_install_mac.sh&quot;">bowtie2_install_mac.sh</a>) script <em>or</em> run the following commands:</p>
+<p>If you need to install bowtie2, you need to run the bowtie2_install_linux.sh script (<a href="./docs/script files/bowtie2_install_linux.sh">bowtie2_install_linux.sh</a>) <em>or</em> the bowtie2_install_mac.sh script (<a href="./docs/script files/bowtie2_install_mac.sh">bowtie2_install_mac.sh</a>) script <em>or</em> run the following commands:</p>
 <p><code>wget  -P ./software https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.4.5/bowtie2-2.4.5-linux-x86_64.zip --no-check-certificate</code></p>
 <p><code>unzip ./software/bowtie2-2.4.5-linux-x86_64.zip</code> <code>mv bowtie2-2.4.5-linux-x86_64 software</code></p>
 </section>
@@ -245,13 +245,13 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="downloading-the-reference-genome">5.2) Downloading the reference genome</h3>
 <p>After installation, you can prepare for the alignment.</p>
 <p><code>mkdir reference</code></p>
-<p>Download the reference genome (one file for whole genome and one file for cds regions only) by running reference_download.sh script (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/reference_download.sh&quot;">reference_download.sh</a>) <em>or</em> by running:</p>
+<p>Download the reference genome (one file for whole genome and one file for cds regions only) by running reference_download.sh script (<a href="./docs/script files/reference_download.sh">reference_download.sh</a>) <em>or</em> by running:</p>
 <p><code>wget  -P ./reference https://ftp.cngb.org/pub/CNSA/data3/CNP0000674/CNS0327487/CNA0019284/Fpum.genome.fa.gz --no-check-certificate</code></p>
 <p><code>wget  -P ./reference https://ftp.cngb.org/pub/CNSA/data3/CNP0000674/CNS0327487/CNA0019284/Fpum.genome.cds.fa.gz --no-check-certificate</code></p>
 </section>
 <section id="indexing-the-reference-genome" class="level3">
 <h3 class="anchored" data-anchor-id="indexing-the-reference-genome">5.3) Indexing the reference genome</h3>
-<p>First step is to index the reference genome. Run reference_index.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/reference_index.sh&quot;">reference_index.sh</a>) <em>or</em> reference_index_mac.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/reference_index_mac.sh&quot;">reference_index_mac.sh</a>) <em>or</em> run the following commands:</p>
+<p>First step is to index the reference genome. Run reference_index.sh (<a href="./docs/script files/reference_index.sh">reference_index.sh</a>) <em>or</em> reference_index_mac.sh (<a href="./docs/script files/reference_index_mac.sh">reference_index_mac.sh</a>) <em>or</em> run the following commands:</p>
 <p><code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2-build -f ./reference/Fpum.genome.fa.gz index_pum</code></p>
 <p><code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2-build -f ./reference/Fpum.genome.cds.fa.gz index_cds_pum</code></p>
 <p><code>mv index* ./reference</code></p>
@@ -261,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="running-bowtie2">5.4) Running bowtie2</h3>
 <p>I use default parameters as they seem to work okay for my analysis. First, make a folder for results:</p>
 <p><code>mkdir alignment_results</code></p>
-<p>Use the alignment_wg.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/alignment_wg.sh&quot;">alignment_wg.sh</a>) and alignment_cds.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/alignment_cds.sh&quot;">alignment_cds.sh</a>) scripts <em>or</em> run the following commands:</p>
+<p>Use the alignment_wg.sh (<a href="./docs/script files/alignment_wg.sh">alignment_wg.sh</a>) and alignment_cds.sh (<a href="./docs/script files/alignment_cds.sh">alignment_cds.sh</a>) scripts <em>or</em> run the following commands:</p>
 <p><code>for i in ./raw_data_per_sample/*.fastq</code> <code>do</code> <code>echo ${i}</code> <code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_pum -U ${i} -S ${i}_wg.sam</code> <code>done</code></p>
 <p><code>mv ./raw_data_per_sample/*.sam ./alignment_results</code></p>
 <p><code>for i in ./raw_data_per_sample/*.fastq</code> <code>do</code> <code>echo ${i}</code> <code>./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_cds_pum -U ${i} -S ${i}_cds.sam</code> <code>done</code></p>
@@ -271,12 +271,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="install-samtools" class="level3">
 <h3 class="anchored" data-anchor-id="install-samtools">5.5) Install samtools</h3>
-<p>First we need to install samtools. Run the samtools_install.sh script (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/samtools_install.sh&quot;">samtools_install.sh</a>) <em>or</em> run:</p>
+<p>First we need to install samtools. Run the samtools_install.sh script (<a href="./docs/script files/samtools_install.sh">samtools_install.sh</a>) <em>or</em> run:</p>
 <p><code>wget -P ./software https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 -O samtools.tar.bz2</code> <code>tar -xjvf ./software/samtools.tar.bz2</code> <code>cd ./software/samtools-1.3.1</code> <code>make</code> <code>cd ..</code></p>
 </section>
 <section id="convert-.sam-to-.bam-and-index-.bam-files" class="level3">
 <h3 class="anchored" data-anchor-id="convert-.sam-to-.bam-and-index-.bam-files">5.6) Convert .sam to .bam and index .bam files</h3>
-<p>Make .bam files and index them by running the samtools.sh (<a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/script files/samtools.sh&quot;">samtools.sh</a>) script, <em>or</em> samtools_mac.sh <a href="./docs/script files/samtools_mac.sh">samtools_mac.sh</a> (if samtools is preinstalled in your local machine in any path) <em>or</em> the following commands:</p>
+<p>Make .bam files and index them by running the samtools.sh (<a href="./docs/script files/samtools.sh">samtools.sh</a>) script, <em>or</em> samtools_mac.sh <a href="./docs/script files/samtools_mac.sh">samtools_mac.sh</a> (if samtools is preinstalled in your local machine in any path) <em>or</em> the following commands:</p>
 <p><code>for i in ./alignment_results/*.sam</code> <code>do</code> <code>./software/samtools-1.3.1/samtools sort -o ${i}.bam ${i}</code> <code>done</code></p>
 <p><code>for i in ./alignment_results/*.bam</code> <code>do</code> <code>./software/samtools-1.3.1/samtools index ${i}</code> <code>done</code></p>
 </section>
@@ -296,8 +296,8 @@ ul.task-list li input[type="checkbox"] {
 <p>To run the analysis, you need to upload the “population map” .txt files in the <em>fig_analysis</em> directory. These files will match the sample names to their assigned population/species. The number (3 or 4) indicates whether data from <em>F.trichocerasa</em> have been included (useful as an outgroup).</p>
 <p>The files:</p>
 <ol type="i">
-<li><p>whole genome alignments: <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/wg_3_populations.txt&quot;">wg_3_populations.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/wg_4_populations.txt&quot;">wg_4_populations.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/wg_3_species.txt&quot;">wg_3_species.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/wg_4_species.txt&quot;">wg_4_species.txt</a></p></li>
-<li><p>cds alignments: <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/cds_3_populations.txt&quot;">cds_3_populations.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/cds_4_populations.txt&quot;">cds_4_populations.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/cds_3_species.txt&quot;">cds_3_species.txt</a> <a href="&quot;/Users/u2095750/Documents/GitHub/website/docs/data files/cds_4_species.txt&quot;">cds_4_species.txt</a></p></li>
+<li><p>whole genome alignments: <a href="./docs/data files/wg_3_populations.txt">wg_3_populations.txt</a> <a href="./docs/data files/wg_4_populations.txt">wg_4_populations.txt</a> <a href="./docs/data files/wg_3_species.txt">wg_3_species.txt</a> <a href="./docs/data files/wg_4_species.txt">wg_4_species.txt</a></p></li>
+<li><p>cds alignments: <a href="./docs/data files/cds_3_populations.txt">cds_3_populations.txt</a> <a href="./docs/data files/cds_4_populations.txt">cds_4_populations.txt</a> <a href="./docs/data files/cds_3_species.txt">cds_3_species.txt</a> <a href="./docs/data files/cds_4_species.txt">cds_4_species.txt</a></p></li>
 </ol>
 
 
