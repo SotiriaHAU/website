@@ -169,7 +169,7 @@ First we need to install samtools. Run the samtools_install.sh script ([samtools
 
 ### 5.6) Convert .sam to .bam and index .bam files
 
-Make .bam files and index them by running the samtools.sh ([samtools.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/samtools.sh%22)) script, *or* samtools_mac.sh ([samtools_mac.sh]("/Users/u2095750/Documents/GitHub/website/docs/script files/samtools_mac.sh")) (if samtools is preinstalled in your local machine in any path) *or* the following commands:
+Make .bam files and index them by running the samtools.sh ([samtools.sh](%22/Users/u2095750/Documents/GitHub/website/docs/script%20files/samtools.sh%22)) script, *or* samtools_mac.sh ([samtools_mac.sh]("/docs/script files/samtools_mac.sh")) (if samtools is preinstalled in your local machine in any path) *or* the following commands:
 
 `for i in ./alignment_results/*.sam` `do` `./software/samtools-1.3.1/samtools sort -o ${i}.bam ${i}` `done`
 
