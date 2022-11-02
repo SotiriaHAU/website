@@ -195,9 +195,73 @@ To run the analysis, you need to upload the "population map" .txt files in the *
 
 The files:
 
-i)  whole genome alignments: [wg_3\_populations.txt](./docs/data files/wg_3_populations.txt) [wg_4\_populations.txt](./docs/data files/wg_4_populations.txt) [wg_3\_species.txt](./docs/data files/wg_3_species.txt) [wg_4\_species.txt](./docs/data files/wg_4_species.txt)
+i)  whole genome alignments: [wg_3_populations.txt](./docs/data files/wg_3_populations.txt) [wg_4_populations.txt](./docs/data files/wg_4_populations.txt) [wg_3_species.txt](./docs/data files/wg_3_species.txt) [wg_4_species.txt](./docs/data files/wg_4_species.txt)
 
-ii) cds alignments: [cds_3\_populations.txt](./docs/data files/cds_3_populations.txt)
-[cds_4\_populations.txt](./docs/data files/cds_4_populations.txt)
-[cds_3\_species.txt](./docs/data files/cds_3_species.txt)
-[cds_4\_species.txt](./docs/data files/cds_4_species.txt)
+ii) cds alignments: [cds_3_populations.txt](./docs/data files/cds_3_populations.txt)
+[cds_4_populations.txt](./docs/data files/cds_4_populations.txt)
+[cds_3_species.txt](./docs/data files/cds_3_species.txt)
+[cds_4_species.txt](./docs/data files/cds_4_species.txt)
+
+### 6.3) Running stacks - popmap
+
+Now we can run the ref_map.pl program script from stacks on our data by the running the "popmap_reference_speciesnumber_analysislevel.sh" scripts.
+
+#### 6.3.1) stacks for wg - 3 species
+
+We with start with the data that have been mapped on the whole genome (wg) and for the subset of the 3 focal species, both at the species and t the population level. 
+
+The scripts are available here:
+[popmap_wg_3_species.sh](./docs/script files/popmap_wg_3_species.sh)
+[popmap_wg_3_populations.sh](./docs/script files/popmap_wg_3_populations.sh)
+
+You can also do this by running the following commands: 
+
+`ref_map.pl --samples ./alignment_results --popmap wg_3_species.txt -o ./popmap_results/wg_3_species -X "populations:--fstats"` 
+`ref_map.pl --samples ./alignment_results --popmap wg_3_species.txt -o ./popmap_results/wg_3_species -X "populations:--vcf"`
+
+`ref_map.pl --samples ./alignment_results --popmap wg_3_populations.txt -o ./popmap_results/wg_3_populations -X "populations:--fstats"`
+`ref_map.pl --samples ./alignment_results --popmap wg_3_populations.txt -o ./popmap_results/wg_3_populations -X "populations:--vcf"`
+
+Then we can continue with the rest of the subsets and mapping.
+
+#### 6.3.2) stacks for wg - 4 species
+
+The scripts are available here:
+[popmap_wg_4_species.sh](./docs/script files/popmap_wg_4_species.sh)
+[popmap_wg_4_populations.sh](./docs/script files/popmap_wg_4_populations.sh)
+
+You can also do this by running the following commands: 
+
+`ref_map.pl --samples ./alignment_results --popmap wg_4_species.txt -o ./popmap_results/wg_4_species -X "populations:--fstats"` 
+`ref_map.pl --samples ./alignment_results --popmap wg_4_species.txt -o ./popmap_results/wg_4_species -X "populations:--vcf"`
+
+`ref_map.pl --samples ./alignment_results --popmap wg_4_populations.txt -o ./popmap_results/wg_4_populations -X "populations:--fstats"`
+`ref_map.pl --samples ./alignment_results --popmap wg_4_populations.txt -o ./popmap_results/wg_4_populations -X "populations:--vcf"`
+
+#### 6.3.3) stacks for cds - 3 species
+
+The scripts are available here (will come soon):
+[popmap_cds_3_species.sh](./docs/script files/popmap_cds_3_species.sh)
+[popmap_cds_3_populations.sh](./docs/script files/popmap_cds_3_populations.sh)
+
+You can also do this by running the following commands: 
+
+`ref_map.pl --samples ./alignment_results --popmap cds_3_species.txt -o ./popmap_results/cds_3_species -X "populations:--fstats"` 
+`ref_map.pl --samples ./alignment_results --popmap cds_3_species.txt -o ./popmap_results/cds_3_species -X "populations:--vcf"`
+
+`ref_map.pl --samples ./alignment_results --popmap cds_3_populations.txt -o ./popmap_results/cds_3_populations -X "populations:--fstats"`
+`ref_map.pl --samples ./alignment_results --popmap cds_3_populations.txt -o ./popmap_results/cds_3_populations -X "populations:--vcf"`
+
+#### 6.3.4) stacks for cds - 4 species
+
+The scripts are available here (will come soon):
+[popmap_cds_4_species.sh](./docs/script files/popmap_cds_4_species.sh)
+[popmap_cds_4_populations.sh](./docs/script files/popmap_cds_4_populations.sh)
+
+You can also do this by running the following commands: 
+
+`ref_map.pl --samples ./alignment_results --popmap cds_4_species.txt -o ./popmap_results/cds_4_species -X "populations:--fstats"` 
+`ref_map.pl --samples ./alignment_results --popmap cds_4_species.txt -o ./popmap_results/cds_4_species -X "populations:--vcf"`
+
+`ref_map.pl --samples ./alignment_results --popmap cds_4_populations.txt -o ./popmap_results/cds_4_populations -X "populations:--fstats"`
+`ref_map.pl --samples ./alignment_results --popmap cds_4_populations.txt -o ./popmap_results/cds_4_populations -X "populations:--vcf"`

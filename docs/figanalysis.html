@@ -128,6 +128,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#installing-stacks" id="toc-installing-stacks" class="nav-link" data-scroll-target="#installing-stacks">6.1) Installing Stacks</a></li>
   <li><a href="#preparing-the-environment" id="toc-preparing-the-environment" class="nav-link" data-scroll-target="#preparing-the-environment">6.2) Preparing the environment</a></li>
+  <li><a href="#running-stacks---popmap" id="toc-running-stacks---popmap" class="nav-link" data-scroll-target="#running-stacks---popmap">6.3) Running stacks - popmap</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -299,8 +300,42 @@ ul.task-list li input[type="checkbox"] {
 <li><p>whole genome alignments: <a href="./docs/data files/wg_3_populations.txt">wg_3_populations.txt</a> <a href="./docs/data files/wg_4_populations.txt">wg_4_populations.txt</a> <a href="./docs/data files/wg_3_species.txt">wg_3_species.txt</a> <a href="./docs/data files/wg_4_species.txt">wg_4_species.txt</a></p></li>
 <li><p>cds alignments: <a href="./docs/data files/cds_3_populations.txt">cds_3_populations.txt</a> <a href="./docs/data files/cds_4_populations.txt">cds_4_populations.txt</a> <a href="./docs/data files/cds_3_species.txt">cds_3_species.txt</a> <a href="./docs/data files/cds_4_species.txt">cds_4_species.txt</a></p></li>
 </ol>
+</section>
+<section id="running-stacks---popmap" class="level3">
+<h3 class="anchored" data-anchor-id="running-stacks---popmap">6.3) Running stacks - popmap</h3>
+<p>Now we can run the ref_map.pl program script from stacks on our data by the running the “popmap_reference_speciesnumber_analysislevel.sh” scripts.</p>
+<section id="stacks-for-wg---3-species" class="level4">
+<h4 class="anchored" data-anchor-id="stacks-for-wg---3-species">6.3.1) stacks for wg - 3 species</h4>
+<p>We with start with the data that have been mapped on the whole genome (wg) and for the subset of the 3 focal species, both at the species and t the population level.</p>
+<p>The scripts are available here: <a href="./docs/script files/popmap_wg_3_species.sh">popmap_wg_3_species.sh</a> <a href="./docs/script files/popmap_wg_3_populations.sh">popmap_wg_3_populations.sh</a></p>
+<p>You can also do this by running the following commands:</p>
+<p><code>ref_map.pl --samples ./alignment_results --popmap wg_3_species.txt -o ./popmap_results/wg_3_species -X "populations:--fstats"</code> <code>ref_map.pl --samples ./alignment_results --popmap wg_3_species.txt -o ./popmap_results/wg_3_species -X "populations:--vcf"</code></p>
+<p><code>ref_map.pl --samples ./alignment_results --popmap wg_3_populations.txt -o ./popmap_results/wg_3_populations -X "populations:--fstats"</code> <code>ref_map.pl --samples ./alignment_results --popmap wg_3_populations.txt -o ./popmap_results/wg_3_populations -X "populations:--vcf"</code></p>
+<p>Then we can continue with the rest of the subsets and mapping.</p>
+</section>
+<section id="stacks-for-wg---4-species" class="level4">
+<h4 class="anchored" data-anchor-id="stacks-for-wg---4-species">6.3.2) stacks for wg - 4 species</h4>
+<p>The scripts are available here: <a href="./docs/script files/popmap_wg_4_species.sh">popmap_wg_4_species.sh</a> <a href="./docs/script files/popmap_wg_4_populations.sh">popmap_wg_4_populations.sh</a></p>
+<p>You can also do this by running the following commands:</p>
+<p><code>ref_map.pl --samples ./alignment_results --popmap wg_4_species.txt -o ./popmap_results/wg_4_species -X "populations:--fstats"</code> <code>ref_map.pl --samples ./alignment_results --popmap wg_4_species.txt -o ./popmap_results/wg_4_species -X "populations:--vcf"</code></p>
+<p><code>ref_map.pl --samples ./alignment_results --popmap wg_4_populations.txt -o ./popmap_results/wg_4_populations -X "populations:--fstats"</code> <code>ref_map.pl --samples ./alignment_results --popmap wg_4_populations.txt -o ./popmap_results/wg_4_populations -X "populations:--vcf"</code></p>
+</section>
+<section id="stacks-for-cds---3-species" class="level4">
+<h4 class="anchored" data-anchor-id="stacks-for-cds---3-species">6.3.3) stacks for cds - 3 species</h4>
+<p>The scripts are available here: <a href="./docs/script files/popmap_cds_3_species.sh">popmap_cds_3_species.sh</a> <a href="./docs/script files/popmap_cds_3_populations.sh">popmap_cds_3_populations.sh</a></p>
+<p>You can also do this by running the following commands:</p>
+<p><code>ref_map.pl --samples ./alignment_results --popmap cds_3_species.txt -o ./popmap_results/cds_3_species -X "populations:--fstats"</code> <code>ref_map.pl --samples ./alignment_results --popmap cds_3_species.txt -o ./popmap_results/cds_3_species -X "populations:--vcf"</code></p>
+<p><code>ref_map.pl --samples ./alignment_results --popmap cds_3_populations.txt -o ./popmap_results/cds_3_populations -X "populations:--fstats"</code> <code>ref_map.pl --samples ./alignment_results --popmap cds_3_populations.txt -o ./popmap_results/cds_3_populations -X "populations:--vcf"</code></p>
+</section>
+<section id="stacks-for-cds---4-species" class="level4">
+<h4 class="anchored" data-anchor-id="stacks-for-cds---4-species">6.3.4) stacks for cds - 4 species</h4>
+<p>The scripts are available here: <a href="./docs/script files/popmap_cds_4_species.sh">popmap_cds_4_species.sh</a> <a href="./docs/script files/popmap_cds_4_populations.sh">popmap_cds_4_populations.sh</a></p>
+<p>You can also do this by running the following commands:</p>
+<p><code>ref_map.pl --samples ./alignment_results --popmap cds_4_species.txt -o ./popmap_results/cds_4_species -X "populations:--fstats"</code> <code>ref_map.pl --samples ./alignment_results --popmap cds_4_species.txt -o ./popmap_results/cds_4_species -X "populations:--vcf"</code></p>
+<p><code>ref_map.pl --samples ./alignment_results --popmap cds_4_populations.txt -o ./popmap_results/cds_4_populations -X "populations:--fstats"</code> <code>ref_map.pl --samples ./alignment_results --popmap cds_4_populations.txt -o ./popmap_results/cds_4_populations -X "populations:--vcf"</code></p>
 
 
+</section>
 </section>
 </section>
 
