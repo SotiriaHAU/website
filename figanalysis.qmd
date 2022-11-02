@@ -69,11 +69,15 @@ To install fastqc, you can run the [fastqc_intall_linux.sh](./docs/script files/
 
 You can now run fastqc in your raw data by running the [fastqc.sh](./docs/script files/fastqc.sh) script *or* by running:
 
-`for i in ./raw_data/*.fastq.gz` `do` `./software/FastQC/fastqc ${i}` `done`
+`for i in ./raw_data/*.fastq.gz`
+`do` 
+`./software/FastQC/fastqc ${i}`
+`done`
 
 You can now make a new folder called **fastqc_results** and move there the results of the fastqc analysis:
 
-`mkdir fastqc_results` `mv ./raw_data/*fastqc* ./fastqc_results`
+`mkdir fastqc_results`
+`mv ./raw_data/*fastqc* ./fastqc_results`
 
 You can then download the .html files and open for inspection. To download the files to your local machine, you can use (for example):
 
@@ -147,11 +151,19 @@ I use default parameters as they seem to work okay for my analysis. First, make 
 
 Use the alignment_wg.sh ([alignment_wg.sh](./docs/script files/alignment_wg.sh)) and alignment_cds.sh ([alignment_cds.sh](./docs/script files/alignment_cds.sh)) scripts *or* run the following commands:
 
-`for i in ./raw_data_per_sample/*.fastq` `do` `echo ${i}` `./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_pum -U ${i} -S ${i}_wg.sam` `done`
+`for i in ./raw_data_per_sample/*.fastq`
+`do` 
+`echo ${i}` 
+`./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_pum -U ${i} -S ${i}_wg.sam` 
+`done`
 
 `mv ./raw_data_per_sample/*.sam ./alignment_results`
 
-`for i in ./raw_data_per_sample/*.fastq` `do` `echo ${i}` `./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_cds_pum -U ${i} -S ${i}_cds.sam` `done`
+`for i in ./raw_data_per_sample/*.fastq`
+`do` 
+`echo ${i}` 
+`./software/bowtie2-2.4.5-linux-x86_64/bowtie2 -x ./reference/index_cds_pum -U ${i} -S ${i}_cds.sam` 
+`done`
 
 `mv ./raw_data_per_sample/*.sam ./alignment_results`
 
@@ -163,15 +175,25 @@ We will also need to generate the .bam files and index them.
 
 First we need to install samtools. Run the samtools_install.sh script ([samtools_install.sh](./docs/script files/samtools_install.sh)) *or* run:
 
-`wget -P ./software https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 -O samtools.tar.bz2` `tar -xjvf ./software/samtools.tar.bz2` `cd ./software/samtools-1.3.1` `make` `cd ..`
+`wget -P ./software https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 -O samtools.tar.bz2`
+`tar -xjvf ./software/samtools.tar.bz2` 
+`cd ./software/samtools-1.3.1` 
+`make` 
+`cd ..`
 
 ### 5.6) Convert .sam to .bam and index .bam files
 
 Make .bam files and index them by running the samtools.sh ([samtools.sh](./docs/script files/samtools.sh)) script, *or* samtools_mac.sh [samtools_mac.sh](./docs/script files/samtools_mac.sh) (if samtools is preinstalled in your local machine in any path) *or* the following commands:
 
-`for i in ./alignment_results/*.sam` `do` `./software/samtools-1.3.1/samtools sort -o ${i}.bam ${i}` `done`
+`for i in ./alignment_results/*.sam` 
+`do` 
+`./software/samtools-1.3.1/samtools sort -o ${i}.bam ${i}` 
+`done`
 
-`for i in ./alignment_results/*.bam` `do` `./software/samtools-1.3.1/samtools index ${i}` `done`
+`for i in ./alignment_results/*.bam`
+`do` 
+`./software/samtools-1.3.1/samtools index ${i}` 
+`done`
 
 ## 6) SNP calling and Fstatistics
 
@@ -185,7 +207,16 @@ First we need to install stacks (you need to adjust to your directory/system).
 
 Run:
 
-`wget  -P ./software http://creskolab.uoregon.edu/stacks/source/stacks-2.62.tar.gz --no-check-certificate` `tar -vxf ./software/stacks-2.62.tar.gz` `mv stacks-2.62 software` `cd software/stacks-2.62` `scl enable devtoolset-8 bash` `./configure --prefix /home/sotiriaboutsi` `make` `make install` `cd ..` `cd ..`
+`wget  -P ./software http://creskolab.uoregon.edu/stacks/source/stacks-2.62.tar.gz --no-check-certificate` 
+`tar -vxf ./software/stacks-2.62.tar.gz` 
+`mv stacks-2.62 software` 
+`cd software/stacks-2.62` 
+`scl enable devtoolset-8 bash` 
+`./configure --prefix /home/sotiriaboutsi` 
+`make` 
+`make install` 
+`cd ..` 
+`cd ..`
 
 ### 6.2) Preparing the environment
 
