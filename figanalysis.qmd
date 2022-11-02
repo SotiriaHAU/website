@@ -238,7 +238,7 @@ You can also do this by running the following commands:
 
 #### 6.3.3) stacks for cds - 3 species
 
-The scripts are available here (will come soon):
+The scripts are available here:
 [popmap_cds_3_species.sh](./docs/script files/popmap_cds_3_species.sh)
 [popmap_cds_3_populations.sh](./docs/script files/popmap_cds_3_populations.sh)
 
@@ -252,7 +252,7 @@ You can also do this by running the following commands:
 
 #### 6.3.4) stacks for cds - 4 species
 
-The scripts are available here (will come soon):
+The scripts are available here:
 [popmap_cds_4_species.sh](./docs/script files/popmap_cds_4_species.sh)
 [popmap_cds_4_populations.sh](./docs/script files/popmap_cds_4_populations.sh)
 
