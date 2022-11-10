@@ -2,8 +2,22 @@
 title: "|  The project  |"
 ---
 
-About our project...
-General, people etc
+## **Introduction**
 
+Close species interactions, such as pollination and trophic dependencies, have long been considered one of the main drivers of biological diversity. One of the best-known examples of co-diversification is that of figs (*Ficus*, Moraceae) and fig wasp pollinators (Agaonidae). Wasps act as pollen vectors for figs while the figs consist of the main food source and shelter for wasp larvae. The extreme obligate pollination system (often a 1-1 species mutualism) is thought to limit gene flow among figs: but how did this situation arise? The manner in which speciation proceeds and the mechanisms limiting gene flow remain relatively unexplored. 
+
+The current project will address: i) the genomics of speciation in figs and pollinators and ii) the ecological and evolutionary determinants of host specificity. We will use existing genomic data sets and field experiments to address the following hypotheses: 
+
+## **Hypothesis 1: ** admixture occurs among members of a recently diverged species complex in line with predictions from morphological compatibility.
+We will focus on the population genomics of host plants and pollinators and specifically on the levels of admixture between a 3-species fig complex (sympatric sister species) of the Papuasyce section (*F. microdictya, F. umbrae, F. itoana*) native to the island of New Guinea. We will use genomic data from previous work from the main supervisor and collaborators to estimate the extent of geneflow and introgression among the species. Datasets include RAD-seq data and draft (10X) genomes. Dating the split between species and establishing the functionality of the genomic regions of high divergence will provide the basis for the mechanisms of speciation. Further sampling will be needed to produce a higher-quality genomic dataset suitable for gene annotation.
+
+## **Hypothesis 2a:** *Wolbachia* infections are predictably distributed among individual fig wasps when considering wasp phylogeny and morphology.
+We will shift our focus on the corresponding wasp pollinators and their symbiotic bacteria, *Wolbachia*. Recent studies demonstrate that *Wolbachia* strains have the potential to mediate aspects of the speciation process of their hosts through inducing cytoplasmic incompatibility and subsequent reproductive isolation of different insect host populations. Wasp samples available from supervisor and collaborators will be explored to clarify the importance of *Wolbachia* infections in the speciation of fig wasps. Morphological data related to the plant-insect interaction (like ovipositor morphology) will additionally provide cues for the mechanisms of reproductive isolation from the symbiont, to the pollinator, to the host plant. 
+
+## **Hypothesis 2b:** *Wolbachia* infections are predictably distributed among species of wasps within a completely sampled genus when considering wasp phylogeny.
+Moreover, we will extend our focus beyond the main fig- wasp system to the large (mainly Australian) section of Malvanthera figs and their pollinators (*Pleistodontes*). The UCE phylogeny of *Pleistodontes* consist around 40 species and over 1,000 genes and was recently completed by the supervisor and collaborators (primarily Dr Jean-Yves Rasplus & Dr Astrid Cruaud). This phylogeny will provide the basis for scaling up infection patterns to an entire genus.
+
+## **Hypothesis 3:** fig wasps show high levels of local adaptation
+To further support and clarify our previous hypotheses, we will conduct experiments focusing on fig wasp phenotypes relevant to their thermal tolerance and dispersal abilities, as well as host specificity/pollinator exchange experiments. Thermal tolerance and dispersal are two critical factors regarding species’ response to climate change, especially in tropical mountains which are characterised by steep environmental gradients and high vulnerability to climate change. Combined with the tight mutualism with the host plants, it becomes apparent that measuring the fragility of the system is crucial and can benefit other systems. 
 
 *This is a Quarto website. To learn more about Quarto websites visit <https://quarto.org/docs/websites>.*
